@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>흙빛 도예공방</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@400;500&display=swap">
+<style>
+/* Layout: 돌 바닥 같은 회색빛 바탕에 청자 유약색을 포인트로. 클래스 카드 → 수업 순서 → 완성품 선반 → 예약으로 이어지는 한 기둥 페이지 */
+:root{
+  --stone:#efede8;
+  --stone-2:#e4e1d9;
+  --surface:#faf9f6;
+  --ink:#26262a;
+  --muted:#6a6862;
+  --glaze:#4f7f77;
+  --glaze-ink:#ffffff;
+  --clay:#a98f73;
+  --line:#d6d2c8;
+  --font-display:"Nanum Myeongjo","Gowun Batang",serif;
+  --font-hand:"Nanum Pen Script",cursive;
+  --font-body:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --stone:#18191a;--stone-2:#202224;--surface:#1c1e20;--ink:#ebe8e2;--muted:#a9a59c;
+    --glaze:#86b8ae;--glaze-ink:#111;--clay:#c2a888;--line:#33363a;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --stone:#18191a;--stone-2:#202224;--surface:#1c1e20;--ink:#ebe8e2;--muted:#a9a59c;
+  --glaze:#86b8ae;--glaze-ink:#111;--clay:#c2a888;--line:#33363a;color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--stone);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.75;padding-bottom:84px}
+@media (min-width:800px){body{padding-bottom:0}}
+.wrap{max-width:1000px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--font-display);font-weight:700;margin:0;text-wrap:balance}
+h2{font-size:clamp(1.6rem,4.6vw,2.2rem);line-height:1.35}
+.hand{font-family:var(--font-hand);font-size:1.45rem;color:var(--glaze);line-height:1}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--glaze);outline-offset:3px}
+
+.notice{background:var(--stone-2);color:var(--muted);font-size:.8rem;text-align:center}
+.notice .wrap{padding-block:7px}
+
+header .wrap{display:flex;justify-content:space-between;align-items:center;gap:14px;padding-block:16px;flex-wrap:wrap}
+.logo{font-family:var(--font-display);font-weight:700;font-size:1.3rem;text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo svg{width:26px;height:26px}
+nav{display:flex;gap:18px;align-items:center;flex-wrap:wrap;font-size:.88rem}
+nav a{text-decoration:none;color:var(--muted)}
+nav a:hover{color:var(--ink)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-body);font-weight:500;font-size:.92rem;text-decoration:none;border-radius:999px;padding:12px 22px;border:1px solid var(--glaze);background:var(--glaze);color:var(--glaze-ink);cursor:pointer}
+.btn.line{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.small{padding:7px 15px;font-size:.84rem}
+nav .btn{color:var(--glaze-ink)}
+
+/* 첫 화면 */
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:36px;align-items:end;padding-block:40px 56px}
+@media (max-width:760px){.hero .wrap{grid-template-columns:1fr;gap:24px;padding-block:24px 44px}}
+.hero h1{font-size:clamp(2.1rem,6.6vw,3.2rem);line-height:1.35;margin-top:8px}
+.hero p{color:var(--muted);margin:16px 0 24px;max-width:30em}
+.actions{display:flex;flex-wrap:wrap;gap:10px}
+.wheel{width:100%;max-width:100%;height:auto;display:block}
+@media (prefers-reduced-motion:no-preference){.spin{animation:spin 6s linear infinite;transform-origin:240px 300px;transform-box:view-box}@keyframes spin{to{transform:rotate(360deg)}}}
+
+section{scroll-margin-top:12px}
+.block .wrap{padding-block:68px;display:grid;gap:28px}
+.alt{background:var(--surface)}
+.head{display:grid;gap:4px;max-width:36em}
+.head p{margin:6px 0 0;color:var(--muted)}
+
+/* 클래스 */
+.classes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+@media (max-width:820px){.classes{grid-template-columns:1fr}}
+.cls{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;display:grid;gap:12px;align-content:start}
+.alt .cls{background:var(--stone)}
+.cls h3{font-size:1.2rem}
+.cls p{margin:0;color:var(--muted);font-size:.92rem}
+dl{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 14px;font-size:.88rem}
+dt{color:var(--muted)}
+dd{margin:0}
+.lv{display:inline-flex;gap:3px;vertical-align:middle}
+.lv i{width:9px;height:9px;border-radius:50%;border:1px solid var(--glaze)}
+.lv i.on{background:var(--glaze)}
+.cls .price{display:flex;justify-content:space-between;align-items:center;gap:10px;border-top:1px dashed var(--line);padding-top:12px;flex-wrap:wrap}
+.cls .price strong{font-variant-numeric:tabular-nums;font-size:1.05rem}
+.cls .price small{display:block;color:var(--muted);font-size:.76rem}
+.group-note{margin:0;color:var(--muted);font-size:.88rem}
+
+/* 수업 순서 */
+.flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:0;padding:0;list-style:none}
+@media (max-width:760px){.flow{grid-template-columns:1fr}}
+.flow li{padding:18px 18px 18px 0;display:grid;gap:6px;align-content:start;border-top:1px solid var(--ink)}
+@media (min-width:761px){.flow li + li{padding-left:18px;border-left:1px solid var(--line)}}
+.flow .n{font-family:var(--font-hand);font-size:1.8rem;color:var(--glaze);line-height:1}
+.flow h3{font-size:1.05rem}
+.flow p{margin:0;color:var(--muted);font-size:.9rem}
+.wait{background:var(--stone-2);border-radius:10px;padding:14px 18px;font-size:.92rem;margin:0}
+.wait b{color:var(--glaze)}
+
+/* 완성품 선반 */
+.shelf{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media (max-width:640px){.shelf{grid-template-columns:repeat(2,minmax(0,1fr))}}
+figure{margin:0;display:grid;gap:6px}
+figure svg{width:100%;height:auto;display:block;background:var(--stone-2);border-radius:10px}
+figcaption{font-size:.82rem;color:var(--muted)}
+.shelf-note{margin:0;font-size:.85rem;color:var(--muted)}
+
+/* 준비물 */
+.prep{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+@media (max-width:640px){.prep{grid-template-columns:1fr}}
+.prep ul{margin:0;padding-left:1.1em;display:grid;gap:6px}
+.prep h3{font-size:1.05rem;margin-bottom:8px}
+
+/* 예약·위치 */
+.closing{background:var(--glaze);color:var(--glaze-ink)}
+.closing .wrap{padding-block:64px;display:grid;gap:28px}
+.closing .hand{color:var(--glaze-ink);opacity:.85}
+.closing .btn{background:var(--glaze-ink);color:var(--glaze);border-color:var(--glaze-ink)}
+.closing .btn.line{background:transparent;color:var(--glaze-ink);border-color:currentColor}
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;border-top:1px solid currentColor;padding-top:24px}
+@media (max-width:760px){.cols{grid-template-columns:1fr}}
+.cols h3{font-family:var(--font-body);font-size:.78rem;letter-spacing:.1em;font-weight:500;opacity:.8;margin-bottom:6px}
+.cols p{margin:0;font-size:.93rem}
+.demo-note{margin:0;font-size:.86rem;border:1px solid currentColor;border-radius:10px;padding:10px 14px}
+
+footer .wrap{padding-block:24px;display:grid;gap:2px;font-size:.78rem;color:var(--muted)}
+
+.bookbar{position:fixed;left:0;right:0;bottom:0;z-index:5;background:var(--surface);border-top:1px solid var(--line);display:flex;gap:10px;align-items:center;
+  padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.bookbar .m{flex:1;min-width:0;font-size:.78rem;color:var(--muted);line-height:1.4}
+.bookbar .m b{display:block;color:var(--ink);font-size:.9rem}
+@media (min-width:800px){.bookbar{display:none}}
+</style>
+</head>
+<body>
+<div class="notice"><div class="wrap">포트폴리오용 예시 페이지입니다. 실제로 있는 공방이 아니에요.</div></div>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#top">
+      <svg viewBox="0 0 26 26" aria-hidden="true"><path d="M6 6h14c0 4-2 5-2 8 0 5-2 8-5 8s-5-3-5-8c0-3-2-4-2-8z" fill="var(--glaze)"/></svg>
+      흙빛 도예공방
+    </a>
+    <nav aria-label="페이지 안내">
+      <a href="#classes">클래스</a>
+      <a href="#flow">수업 순서</a>
+      <a href="#works">완성품</a>
+      <a href="#visit">오시는 길</a>
+      <a class="btn small" href="#" data-demo>클래스 예약</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="hand">처음이어도 괜찮아요</span>
+        <h1>두 시간 동안, 손으로 흙을 만지는 시간</h1>
+        <p>물레를 처음 돌려 보는 분도 내 컵 하나를 완성해 가요. 한 클래스에 최대 4명, 선생님이 옆에서 손을 같이 잡아 드려요.</p>
+        <div class="actions">
+          <a class="btn" href="#" data-demo>클래스 예약하기</a>
+          <a class="btn line" href="#classes">클래스 둘러보기</a>
+        </div>
+      </div>
+      <svg class="wheel" viewBox="0 0 480 360" role="img" aria-label="물레 위에서 그릇을 빚는 그림">
+        <rect width="480" height="360" rx="18" fill="var(--stone-2)"/>
+        <ellipse cx="240" cy="300" rx="150" ry="26" fill="var(--clay)" opacity=".35"/>
+        <g class="spin"><ellipse cx="240" cy="300" rx="120" ry="18" fill="none" stroke="var(--muted)" stroke-width="1" stroke-dasharray="4 10" opacity=".6"/></g>
+        <path d="M180 292c-6-60 0-100 18-130h84c18 30 24 70 18 130z" fill="var(--clay)"/>
+        <ellipse cx="240" cy="162" rx="42" ry="9" fill="#8a7259"/>
+        <path d="M196 200c30 8 58 8 88 0" stroke="#8a7259" stroke-width="2" fill="none" opacity=".6"/>
+        <path d="M190 240c34 8 66 8 100 0" stroke="#8a7259" stroke-width="2" fill="none" opacity=".6"/>
+        <path d="M110 190c30-10 54 0 72 18 8 8 6 20-4 22l-60 6c-14 2-22-8-20-20z" fill="#d9c3a8"/>
+        <path d="M370 190c-30-10-54 0-72 18-8 8-6 20 4 22l60 6c14 2 22-8 20-20z" fill="#d9c3a8"/>
+        <text x="40" y="60" font-size="26" fill="var(--glaze)" font-family="Nanum Pen Script, cursive">오늘 빚은 컵, 3주 뒤 받아요</text>
+      </svg>
+    </div>
+  </section>
+
+  <section class="block alt" id="classes">
+    <div class="wrap">
+      <div class="head">
+        <span class="hand">원데이 클래스</span>
+        <h2>오늘 만들어 갈 것을 골라요</h2>
+      </div>
+      <div class="classes">
+        <article class="cls">
+          <h3>물레 체험 클래스</h3>
+          <p>물레를 돌려 컵이나 그릇 2개를 빚어요. 가장 인기 있는 클래스예요.</p>
+          <dl>
+            <dt>시간</dt><dd>2시간</dd>
+            <dt>인원</dt><dd>최대 4명</dd>
+            <dt>가져가는 것</dt><dd>컵·그릇 2개 (유약 바른 뒤 가마에 구워 드려요)</dd>
+            <dt>난이도</dt><dd><span class="lv" aria-label="3단계 중 2단계"><i class="on"></i><i class="on"></i><i></i></span></dd>
+          </dl>
+          <div class="price"><span><small>1인</small><strong>65,000원</strong></span><a class="btn small" href="#" data-demo>예약하기</a></div>
+        </article>
+        <article class="cls">
+          <h3>손으로 빚는 접시</h3>
+          <p>물레 없이 흙을 펴고 모양을 잡아 접시를 만들어요. 아이와 함께 오기 좋아요.</p>
+          <dl>
+            <dt>시간</dt><dd>1시간 30분</dd>
+            <dt>인원</dt><dd>최대 6명 · 초등학생부터</dd>
+            <dt>가져가는 것</dt><dd>접시 1개 + 작은 종지 1개</dd>
+            <dt>난이도</dt><dd><span class="lv" aria-label="3단계 중 1단계"><i class="on"></i><i></i><i></i></span></dd>
+          </dl>
+          <div class="price"><span><small>1인</small><strong>45,000원</strong></span><a class="btn small" href="#" data-demo>예약하기</a></div>
+        </article>
+        <article class="cls">
+          <h3>커플 머그 클래스</h3>
+          <p>두 사람이 각자 머그를 빚고, 손잡이에 이니셜을 새겨요.</p>
+          <dl>
+            <dt>시간</dt><dd>2시간 30분</dd>
+            <dt>인원</dt><dd>2명 한 팀 · 하루 2팀</dd>
+            <dt>가져가는 것</dt><dd>머그 2개</dd>
+            <dt>난이도</dt><dd><span class="lv" aria-label="3단계 중 2단계"><i class="on"></i><i class="on"></i><i></i></span></dd>
+          </dl>
+          <div class="price"><span><small>2인 한 팀</small><strong>120,000원</strong></span><a class="btn small" href="#" data-demo>예약하기</a></div>
+        </article>
+      </div>
+      <p class="group-note">5명 이상 단체(회사 워크숍, 생일 모임)는 따로 문의해 주세요. 앞치마와 도구는 모두 준비돼 있어요.</p>
+    </div>
+  </section>
+
+  <section class="block" id="flow">
+    <div class="wrap">
+      <div class="head">
+        <span class="hand">수업 순서</span>
+        <h2>흙 한 덩이가 그릇이 되기까지</h2>
+      </div>
+      <ol class="flow">
+        <li><span class="n">1</span><h3>흙 반죽하기</h3><p>흙 속 공기를 빼면서 손에 익혀요.</p></li>
+        <li><span class="n">2</span><h3>모양 빚기</h3><p>물레나 손으로 원하는 모양을 만들어요.</p></li>
+        <li><span class="n">3</span><h3>유약 색 고르기</h3><p>견본을 보고 마음에 드는 색을 골라요.</p></li>
+        <li><span class="n">4</span><h3>가마에 굽기</h3><p>공방에서 두 번 구워 단단하게 완성해요.</p></li>
+      </ol>
+      <p class="wait">흙이 마르고 가마에 두 번 굽는 시간이 필요해서, 완성품은 <b>수업 후 약 3주 뒤</b>에 받을 수 있어요. 직접 찾으러 오시거나 택배(4,000원)로 받으실 수 있어요.</p>
+    </div>
+  </section>
+
+  <section class="block alt" id="works">
+    <div class="wrap">
+      <div class="head">
+        <span class="hand">완성품 선반</span>
+        <h2>수강생들이 만든 그릇</h2>
+      </div>
+      <div class="shelf">
+        <figure><svg viewBox="0 0 160 160" aria-hidden="true"><path d="M44 54h72l-6 70q-2 12-14 12H64q-12 0-14-12z" fill="#7fa79f"/><path d="M116 70q22 2 18 26-4 18-22 14" fill="none" stroke="#7fa79f" stroke-width="8"/><ellipse cx="80" cy="54" rx="36" ry="6" fill="#5f8a82"/></svg><figcaption>청자색 머그 · 물레 클래스</figcaption></figure>
+        <figure><svg viewBox="0 0 160 160" aria-hidden="true"><ellipse cx="80" cy="96" rx="58" ry="16" fill="#e8e1d3"/><ellipse cx="80" cy="92" rx="44" ry="10" fill="#d8cdb8"/><path d="M40 92q40 18 80 0" stroke="#a98f73" stroke-width="2" fill="none"/></svg><figcaption>백토 접시 · 손으로 빚는 접시</figcaption></figure>
+        <figure><svg viewBox="0 0 160 160" aria-hidden="true"><path d="M36 70q0 56 44 56t44-56z" fill="#b58b64"/><ellipse cx="80" cy="70" rx="44" ry="9" fill="#8a6a4c"/><path d="M42 92q38 10 76 0" stroke="#f0e6d6" stroke-width="3" fill="none" opacity=".7"/></svg><figcaption>갈색 유약 밥그릇 · 물레 클래스</figcaption></figure>
+        <figure><svg viewBox="0 0 160 160" aria-hidden="true"><path d="M66 36h28v14q20 14 20 42 0 34-34 34T46 92q0-28 20-42z" fill="#2f4f4a"/><ellipse cx="80" cy="36" rx="14" ry="4" fill="#1f3833"/></svg><figcaption>짙은 녹색 화병 · 정규반 작품</figcaption></figure>
+      </div>
+      <p class="shelf-note">실제 홈페이지에서는 이 자리에 공방의 완성품 사진이 들어가요.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="head">
+        <span class="hand">오시기 전에</span>
+        <h2>준비물과 알아 둘 것</h2>
+      </div>
+      <div class="prep">
+        <div>
+          <h3>이렇게 오세요</h3>
+          <ul>
+            <li>흙이 묻어도 괜찮은 편한 옷</li>
+            <li>손톱은 짧게, 반지와 팔찌는 빼고 오면 좋아요</li>
+            <li>앞치마, 도구, 손 닦을 수건은 공방에서 준비해요</li>
+          </ul>
+        </div>
+        <div>
+          <h3>예약 변경</h3>
+          <ul>
+            <li>수업 2일 전까지 날짜를 바꾸거나 취소할 수 있어요</li>
+            <li>당일 취소는 재료 준비 때문에 환불이 어려워요</li>
+            <li>10분 넘게 늦으시면 수업 시간이 줄어들 수 있어요</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing" id="visit">
+    <div class="wrap">
+      <div class="head">
+        <span class="hand">예약</span>
+        <h2>이번 주말, 흙 만지러 오세요</h2>
+      </div>
+      <div class="actions">
+        <a class="btn" href="#" data-demo>클래스 예약하기</a>
+        <a class="btn line" href="#" data-demo>단체 수업 문의</a>
+      </div>
+      <p class="demo-note" id="demo-note" hidden>견본 페이지라서 실제 예약이나 문의로 넘어가지 않아요. 진짜 홈페이지에서는 이 버튼이 공방의 네이버 예약이나 카카오톡 채널로 연결돼요.</p>
+      <div class="cols">
+        <div>
+          <h3>클래스 시간</h3>
+          <p>수 – 금 14:00 / 19:00</p>
+          <p>토 – 일 11:00 / 14:00 / 17:00</p>
+          <p>월 · 화 쉬어요</p>
+        </div>
+        <div>
+          <h3>위치</h3>
+          <p>흙빛시 공예구 가마길 5, 1층</p>
+          <p style="opacity:.85">공예역 1번 출구에서 걸어서 6분</p>
+        </div>
+        <div>
+          <h3>문의</h3>
+          <p style="font-variant-numeric:tabular-nums">000-0000-0000</p>
+          <p style="opacity:.85">수업 중에는 문자로 남겨 주세요</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>흙빛 도예공방 · 대표 홍길동 · 사업자등록번호 000-00-00000</span>
+    <span>예시용 가상 공방이에요. 주소, 전화번호, 클래스, 가격은 모두 지어낸 내용이에요.</span>
+  </div>
+</footer>
+
+<div class="bookbar">
+  <div class="m"><b>이번 주말 클래스 예약 중</b>한 클래스 최대 4명</div>
+  <a class="btn small" href="#" data-demo>예약하기</a>
+</div>
+
+<script>
+var note = document.getElementById('demo-note');
+document.querySelectorAll('[data-demo]').forEach(function(a){
+  a.addEventListener('click', function(e){
+    e.preventDefault();
+    note.hidden = false;
+    note.scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center'});
+  });
+});
+</script>
+</body>
+</html>
